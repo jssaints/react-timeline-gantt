@@ -10,7 +10,8 @@ class Registry{
             return;
         this.data={}
         for (let i=0;i<list.length;i++){
-            this.data[list[i].id]={item:list[i],index:i};
+            let key = (list[i].groupBy_index !== undefined)? list[i].groupBy_index: i;
+            this.data[list[i].id]={item:list[i],index:key};
         }
     }
     registerLinks(list){
@@ -23,7 +24,8 @@ class Registry{
         for (let i=0;i<list.length;i++){
             start=list[i].start;
             end=list[i].end;
-            let value={link:list[i],index:i}
+            let key = (list[i].groupBy_index !== undefined)? list[i].groupBy_index: i;
+            let value={link:list[i],index:key}
             this.createAddTo(start,this.link,value,i)
             this.createAddTo(end,this.link,value,i)
         }
